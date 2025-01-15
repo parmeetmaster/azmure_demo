@@ -1,3 +1,4 @@
+
 # My Trainings App
 
 ## Overview
@@ -38,18 +39,17 @@ My Trainings App is a mobile application built using Flutter (Dart) that allows 
 ## Installation
 
 ### Prerequisites
-Ensure that you have the following software installed on your machine:
+Ensure that you have the following software installed onA your machine:
 - **Flutter 3.27.0**
 - **JVM 23**
 
 
 
-### Steps to Run the Application
+### Downlaod other resources
 
-1. Clone this repository:
-   ```bash
-   git clone <repository_url>
-
+- *Link to Download Video*: https://github.com/parmeetmaster/azmure_demo/blob/master/resources/azmur%202.mp4
+- Link to Download APK https://github.com/parmeetmaster/azmure_demo/blob/master/resources/app-release.apk
+- Link to Download Zip: https://github.com/parmeetmaster/azmure_demo/blob/master/resources/task_flutter.zip
 
 ### Contact details
 

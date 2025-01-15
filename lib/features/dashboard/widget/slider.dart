@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_flutter/constants/colors.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
   final double expandedHeight;
@@ -13,7 +14,7 @@ class CustomSliverAppBar extends StatelessWidget {
 
   CustomSliverAppBar({
     required this.expandedHeight,
-     this.title="Trainings",
+    this.title = "Trainings",
     required this.imageUrl,
   });
 
@@ -24,15 +25,14 @@ class CustomSliverAppBar extends StatelessWidget {
           primaryColor: Colors.redAccent,
           appBarTheme: AppBarTheme(backgroundColor: Colors.red),
           textTheme: TextTheme(
-              headlineLarge:
-              GoogleFonts.montserrat(color: Colors.white,
+              headlineLarge: GoogleFonts.montserrat(
+                  color: Colors.white,
                   fontSize: 28,
                   fontWeight: FontWeight.bold),
-          headlineMedium: GoogleFonts.roboto(color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold)
-
-          )),
+              headlineMedium: GoogleFonts.roboto(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold))),
       child: SliverAppBar(
         expandedHeight: expandedHeight,
         pinned: true,
@@ -47,14 +47,16 @@ class CustomSliverAppBar extends StatelessWidget {
             // Adjust the title size as it shrinks
             final double titleFontSize = lerpDouble(20.0, 16.0, progress)!;
             return FlexibleSpaceBar(
+              titlePadding:
+                  EdgeInsets.only(left: 20, bottom: kToolbarHeight / 3),
               title: Text(
-                title,
+                progress < 0.21 ? title : "",
                 style: TextStyle(
-                  fontSize: titleFontSize,
-                  color: Colors.black,
-                ),
+                    fontSize: titleFontSize,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1),
               ),
-              centerTitle: true,
               background: Container(
                 height: 250,
                 color: Theme.of(context).primaryColor,
@@ -74,8 +76,9 @@ class CustomSliverAppBar extends StatelessWidget {
                           color:
                               Theme.of(context).textTheme.headlineLarge?.color,
                         ),
-
-                        SizedBox(width: 10,)
+                        SizedBox(
+                          width: 10,
+                        )
                       ],
                     ),
                     Padding(
@@ -121,10 +124,9 @@ class CustomSliverAppBar extends StatelessWidget {
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 30),
-                                  child: Image.network(
-                                    width: double.infinity,
-                                    "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
-                                    fit: BoxFit.cover,
+                                  child: SliderComponent(
+                                    imageUrl:
+                                        'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
                                   ),
                                 );
                               },
@@ -169,5 +171,118 @@ class CustomSliverAppBar extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class SliderComponent extends StatelessWidget {
+  final String imageUrl;
+
+  SliderComponent({required this.imageUrl});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (context, constrains) {
+      return Stack(
+        children: [
+          // Image background
+          Image.network(
+            imageUrl,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          // Black overlay layer
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            color: Colors.black.withOpacity(0.5),
+          ),
+          // Text positioned at the center-left
+          Positioned(
+            top: constrains.maxHeight / 2 - 20,
+            left: 5,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //safe scrum text
+                Padding(
+                  padding: const EdgeInsets.only(left: 3.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Scrum Safe master',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'West Des Monies 1A - 30 Oct - 31 Oct',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 8,),
+                SizedBox(
+                  width: constrains.maxWidth - 10,
+                  child: Row(
+                    children: [
+                      Text(
+                        '875',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
+                          decoration: TextDecoration.lineThrough,
+                          color: Color.lerp(
+                              ColorName.primaryRed, Colors.black, 0.3)!,
+                          decorationColor: ColorName.primaryRed,
+                          // Optional: Color of the strike line
+                          decorationThickness:
+                              2.0, // Optional: Thickness of the strike line
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '\$875',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
+                          color: ColorName.primaryRed,
+                          // Optional: Color of the strike line
+
+                        ),
+                      ),
+                      Spacer(),
+                      Text(
+                        "View Details",
+                        style: TextStyle(color: Colors.white,
+                        fontSize: 12
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_outlined,
+                        color: Colors.white,
+                        size: 14,
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      );
+    });
   }
 }

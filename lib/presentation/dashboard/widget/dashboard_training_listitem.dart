@@ -1,6 +1,6 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:task_flutter/features/dashboard/widget/profile_avtar.dart';
+import 'package:task_flutter/presentation/dashboard/widget/profile_avtar.dart';
 
 import '../../../constants/colors.dart';
 

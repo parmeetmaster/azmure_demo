@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_flutter/constants/colors.dart';
-import 'package:task_flutter/features/dashboard/widget/filter_bottom_sheet.dart';
+import 'package:task_flutter/presentation/dashboard/widget/filter_bottom_sheet.dart';
 
 class SliderPersistHeader extends StatelessWidget {
 
